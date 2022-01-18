@@ -1,13 +1,13 @@
 # flutter_template
 
-A custom template for Flutter apps by Kasymbek "cos9" Tashbaev.
+A custom template for Flutter apps used by me.
 
-## Changing the default app template
+### Navigate to your new project and replace content of the directory with files of this repository.
 
-Navigate to {your-flutter-install}/packages/flutter-tools/templates/app/ and replace content of the
-directory with files of this repository.
-
-## Content
+### Packages
 * hooks_riverpod is State Management
 * easy_localization is used for localization
-* Custom lints
+* custom base api with dio
+* Packages useful in mot projects: shared_preferences, permission_handler, introduction_screen,
+  form_builder_validators
+* Preset lints used by me, easily customisable
