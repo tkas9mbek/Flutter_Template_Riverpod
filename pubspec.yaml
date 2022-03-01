@@ -20,12 +20,6 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.15.1 <3.0.0"
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.4
@@ -34,6 +28,7 @@ dependencies:
     sdk: flutter
   flutter_form_builder: ^7.0.0
   form_builder_validators: ^7.0.0
+  google_fonts: ^2.3.1
   hooks_riverpod: ^1.0.3
   introduction_screen: ^2.1.0
   json_annotation: ^4.4.0

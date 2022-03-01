@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,6 +18,11 @@ Future<void> main() async {
 
   final sharedPreferences = await SharedPreferences.getInstance();
 
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('assets/google_fonts/OFL_raleway.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+
   runApp(
     ProviderScope(
       overrides: [
@@ -31,8 +38,8 @@ class EasyLocalizator extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final supportedLocales = ref.read(supportedLocalesProvider);
-    final fallbackLocale = ref.read(fallbackLocaleProvider);
+    final supportedLocales = ref.watch(supportedLocalesProvider);
+    final fallbackLocale = ref.watch(fallbackLocaleProvider);
 
     return EasyLocalization(
       supportedLocales: supportedLocales,
@@ -50,6 +57,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sharedPreferences = ref.read(sharedPreferencesProvider);
     final theme = ref.watch(themeChangeProvider).themeData;
+    final fallbackLocale = ref.watch(fallbackLocaleProvider);
     final isIntroViewed = sharedPreferences.getBool('intro_viewed') ?? false;
     String initialRoute;
 
@@ -66,6 +74,15 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (!supportedLocales.contains(locale)) {
+          context.setLocale(fallbackLocale);
+
+          return context.fallbackLocale;
+        }
+
+        return locale;
+      },
       theme: theme,
       initialRoute: initialRoute,
       routes: {
