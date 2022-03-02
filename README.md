@@ -9,4 +9,4 @@ A custom template for Flutter apps used by me.
 * packages useful in mot projects: shared_preferences, permission_handler, introduction_screen,
   form_builder_validators
 * easily customisable lints
-* 
+* google_fonts integrated

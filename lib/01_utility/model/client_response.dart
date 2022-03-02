@@ -1,6 +1,3 @@
-/**
- * Object returned by methods of MyClient
- */
 class ClientResponse {
   ClientResponse({
     required this.status,
