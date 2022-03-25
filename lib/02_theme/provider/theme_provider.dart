@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'my_colors.dart';
+import '../colors.dart';
 
-ThemeData lightTheme = ThemeData(
+ThemeData _lightTheme = ThemeData(
   colorScheme: ColorScheme(
     primary: MyColors.neonMagentaAccent,
-    primaryVariant: MyColors.neonMagentaAccent,
     onPrimary: Colors.white,
     secondary: MyColors.apricotAccent,
-    secondaryVariant: MyColors.apricotAccent,
     onSecondary: Colors.white,
     surface: MyColors.apricotNeonMagentaMix,
     onSurface: Colors.black,
@@ -25,13 +24,11 @@ ThemeData lightTheme = ThemeData(
   ),
 );
 
-ThemeData darkTheme = ThemeData(
+ThemeData _darkTheme = ThemeData(
   colorScheme: ColorScheme(
     primary: MyColors.navy,
-    primaryVariant: MyColors.navy,
     onPrimary: Colors.white,
     secondary: MyColors.purpleLight,
-    secondaryVariant: MyColors.purpleLight,
     onSecondary: Colors.white,
     surface: MyColors.navyDark,
     onSurface: Colors.white,
@@ -47,3 +44,6 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
 );
+
+final lightThemeProvider = Provider<ThemeData>((ref) => _lightTheme);
+final darkThemeProvider = Provider<ThemeData>((ref) => _darkTheme);

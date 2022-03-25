@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -16,7 +17,7 @@ class IntroPageState extends ConsumerState<IntroPage> {
   final _introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(BuildContext context) {
-    Navigator.pushReplacementNamed(context, routeToSettings);
+    context.go(routeToSettings);
   }
 
   @override

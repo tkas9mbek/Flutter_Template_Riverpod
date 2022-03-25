@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../04_theme/provider/theme_provider.dart';
+import '../02_theme/provider/theme_mode_provider.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class SettingsPageState extends ConsumerState<SettingsPage> {
               child: const Text('change_lang').tr(),
             ),
             TextButton(
-              onPressed: () => ref.read(themeChangeProvider.notifier).switchTheme(),
+              onPressed: () => ref.read(themeModeProvider.notifier).switchTheme(),
               child: const Text('change_theme').tr(),
             ),
           ],
