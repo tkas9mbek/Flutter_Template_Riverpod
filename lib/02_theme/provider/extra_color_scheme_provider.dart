@@ -15,7 +15,8 @@ final _lightExtraColorScheme = ExtraColorScheme(
   warning: MyColors.yellow,
   successBackground: MyColors.greenShadow,
   success: MyColors.green,
-  primaryLight: MyColors.greenLight,
+  toastPositive: MyColors.greenLight,
+  toastNegative: MyColors.redShadow,
 );
 
 final extraColorSchemeProvider = Provider<ExtraColorScheme>((ref) {

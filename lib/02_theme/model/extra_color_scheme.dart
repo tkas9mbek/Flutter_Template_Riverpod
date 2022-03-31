@@ -1,5 +1,6 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
+@immutable
 class ExtraColorScheme {
   const ExtraColorScheme({
     required this.starFilled,
@@ -11,7 +12,8 @@ class ExtraColorScheme {
     required this.warning,
     required this.successBackground,
     required this.success,
-    required this.primaryLight,
+    required this.toastPositive,
+    required this.toastNegative,
   });
 
   final Color starFilled;
@@ -23,5 +25,6 @@ class ExtraColorScheme {
   final Color warning;
   final Color successBackground;
   final Color success;
-  final Color primaryLight;
+  final Color toastPositive;
+  final Color toastNegative;
 }

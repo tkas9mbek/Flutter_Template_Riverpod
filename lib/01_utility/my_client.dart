@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import '../00_value/constants.dart';
 import 'model/client_response.dart';
 
 enum Method {
@@ -43,6 +44,7 @@ class MyClient {
 
   late Dio _dio;
   final BaseOptions _options = BaseOptions(
+    baseUrl: backendApiUrl,
     connectTimeout: 30000,
     receiveTimeout: 15000,
   );
@@ -122,16 +124,22 @@ class MyClient {
       return ClientResponse(
         status: false,
         message: e.message,
+        errorCode: -1,
+        error: e,
       );
     } on DioError catch (e) {
       return ClientResponse(
         status: false,
-        message: e.message,
+        message: e.response?.data.toString() ?? e.message,
+        errorCode: e.response?.statusCode,
+        error: e,
       );
     } catch (e) {
       return ClientResponse(
         status: false,
         message: e.toString(),
+        errorCode: 0,
+        error: e,
       );
     }
   }
@@ -142,13 +150,13 @@ class MyClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async => call(
-      uri,
-      method: Method.get,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-    );
+    uri,
+    method: Method.get,
+    queryParameters: queryParameters,
+    options: options,
+    cancelToken: cancelToken,
+    onReceiveProgress: onReceiveProgress,
+  );
 
   Future<ClientResponse> post(String uri, {
     dynamic data,
@@ -158,15 +166,15 @@ class MyClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async => call(
-      uri,
-      method: Method.post,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-      onSendProgress: onSendProgress,
-    );
+    uri,
+    method: Method.post,
+    data: data,
+    queryParameters: queryParameters,
+    options: options,
+    cancelToken: cancelToken,
+    onReceiveProgress: onReceiveProgress,
+    onSendProgress: onSendProgress,
+  );
 
   Future<ClientResponse> put(String uri, {
     dynamic data,
@@ -176,15 +184,15 @@ class MyClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async => call(
-      uri,
-      method: Method.put,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-      onSendProgress: onSendProgress,
-    );
+    uri,
+    method: Method.put,
+    data: data,
+    queryParameters: queryParameters,
+    options: options,
+    cancelToken: cancelToken,
+    onReceiveProgress: onReceiveProgress,
+    onSendProgress: onSendProgress,
+  );
 
   Future<ClientResponse> patch(String uri, {
     dynamic data,
@@ -194,15 +202,15 @@ class MyClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async => call(
-      uri,
-      method: Method.patch,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-      onSendProgress: onSendProgress,
-    );
+    uri,
+    method: Method.patch,
+    data: data,
+    queryParameters: queryParameters,
+    options: options,
+    cancelToken: cancelToken,
+    onReceiveProgress: onReceiveProgress,
+    onSendProgress: onSendProgress,
+  );
 
   Future<ClientResponse> delete(String uri, {
     dynamic data,
@@ -210,11 +218,11 @@ class MyClient {
     Options? options,
     CancelToken? cancelToken,
   }) async => call(
-      uri,
-      method: Method.delete,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-    );
+    uri,
+    method: Method.delete,
+    data: data,
+    queryParameters: queryParameters,
+    options: options,
+    cancelToken: cancelToken,
+  );
 }

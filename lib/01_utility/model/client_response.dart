@@ -1,13 +1,21 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
 class ClientResponse {
-  ClientResponse({
+  const ClientResponse({
     required this.status,
     this.data,
     this.errorCode,
     this.message,
+    this.error,
   });
 
-  bool status;
-  dynamic data;
-  int? errorCode;
-  String? message;
+  final bool status;
+  final dynamic data;
+  final int? errorCode;
+  final String? message;
+  final Object? error;
+
+  @override
+  String toString() => 'ClientResponse{status: $status, data: $data, errorCode: $errorCode, message: $message, error: $error}';
 }
