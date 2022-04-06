@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '00_value/provider/locale_providers.dart';
-import '00_value/provider/router_provider.dart';
-import '01_utility/provider/shared_preferences_provider.dart';
-import '02_theme/provider/theme_mode_provider.dart';
-import '02_theme/provider/theme_provider.dart';
+import 'core/localization/locale_providers.dart';
+import 'core/routing/router_provider.dart';
+import 'core/service/shared_preferences_provider.dart';
+import 'core/theme/provider/theme_mode_provider.dart';
+import 'core/theme/provider/theme_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

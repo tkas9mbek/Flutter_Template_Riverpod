@@ -29,7 +29,7 @@ linter:
     avoid_bool_literals_in_conditional_expressions: true
     avoid_catches_without_on_clauses: false
     avoid_catching_errors: true
-    avoid_classes_with_only_static_members: true
+    avoid_classes_with_only_static_members: false
     avoid_double_and_int_checks: true
     avoid_dynamic_calls: true
     avoid_empty_else: true
@@ -74,7 +74,7 @@ linter:
     close_sinks: true
     comment_references: false
     conditional_uri_does_not_exist: true
-    constant_identifier_names: true
+    constant_identifier_names: false
     control_flow_in_finally: true
     curly_braces_in_flow_control_structures: true
     depend_on_referenced_packages: true
