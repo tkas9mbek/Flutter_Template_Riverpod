@@ -9,14 +9,14 @@ import 'core/localization/locale_providers.dart';
 import 'core/routing/router_provider.dart';
 import 'core/service/shared_preferences_provider.dart';
 import 'core/theme/provider/theme_mode_provider.dart';
-import 'core/theme/provider/theme_provider.dart';
+import 'core/theme/provider/theme_providers.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
   LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('assets/fonts/OFL.txt');
+    final license = await rootBundle.loadString('assets/fonts/UFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
 
@@ -60,6 +60,7 @@ class MyApp extends ConsumerWidget {
     final lightTheme = ref.watch(lightThemeProvider);
     final darkTheme = ref.watch(darkThemeProvider);
     final fallbackLocale = ref.watch(fallbackLocaleProvider);
+    final languageCodes = ref.watch(supportedLanguageCodesProvider);
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
@@ -68,7 +69,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       localeResolutionCallback: (locale, supportedLocales) {
-        if (!supportedLocales.contains(locale)) {
+        if (!languageCodes.contains(locale?.languageCode)) {
           context.setLocale(fallbackLocale);
 
           return context.fallbackLocale;

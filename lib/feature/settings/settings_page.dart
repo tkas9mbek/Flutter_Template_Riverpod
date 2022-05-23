@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/theme/provider/theme_mode_provider.dart';
+import '../../core/theme/styles.dart';
 import '../../core/widget/page_foundation.dart';
+import '../../core/widget/shadow_text_button.dart';
+import '../../core/widget/transparent_app_bar.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -14,33 +17,26 @@ class SettingsPage extends ConsumerStatefulWidget {
 
 class SettingsPageState extends ConsumerState<SettingsPage> {
   @override
-  Widget build(BuildContext context) => PageFoundation(
-    appBar: AppBar(
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      title: Text(
-        'title'.tr(),
-      ),
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return PageFoundation(
+    backgroundColor: colorScheme.primary,
+    padding: Styles.generalBodyPadding,
+    appBar: TransparentAppBar(
+      title: 'settings'.tr(),
     ),
     body: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: <Widget>[
-          const SizedBox(
-            height: 12,
-          ),
-          TextButton(
-            onPressed: () => context.locale.languageCode == 'en'
-                ? context.setLocale(const Locale('ru'))
-                : context.setLocale(const Locale('en')),
-            child: const Text('change_lang').tr(),
-          ),
-          TextButton(
-            onPressed: () => ref.read(themeModeProvider.notifier).switchTheme(),
-            child: const Text('change_theme').tr(),
+          ShadowTextButton(
+            onClick: () => ref.read(themeModeProvider.notifier).switchTheme(),
+            text: 'change_theme'.tr(),
           ),
         ],
       ),
     ),
   );
+  }
 }

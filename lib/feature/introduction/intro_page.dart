@@ -17,7 +17,7 @@ class IntroPageState extends ConsumerState<IntroPage> {
   final _introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(BuildContext context) {
-    context.go(routeToSettings);
+    context.go(routeToHome);
   }
 
   @override
@@ -48,7 +48,6 @@ class IntroPageState extends ConsumerState<IntroPage> {
         onDone: () => _onIntroEnd(context),
         onSkip: () => _onIntroEnd(context),
         showSkipButton: true,
-        skipFlex: 0,
         nextFlex: 0,
         skip: const Text('skip').tr(),
         done: const Text('done').tr(),

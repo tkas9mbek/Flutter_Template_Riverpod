@@ -2,30 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../feature/home/home_page.dart';
 import '../../feature/introduction/intro_page.dart';
 import '../../feature/settings/settings_page.dart';
 import '../service/shared_preferences_provider.dart';
 import 'route_paths.dart';
+import 'router_helper_functions.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final sharedPreferences = ref.read(sharedPreferencesProvider);
-  final isIntroViewed = sharedPreferences.getBool('intro_viewed') ?? false;
 
   return GoRouter(
+    initialLocation: sharedPreferences.getBool('intro_viewed') ?? false ? routeToHome : routeToIntro,
     routes: <GoRoute>[
       GoRoute(
-        path: '/',
-        redirect: (_) => isIntroViewed
-            ? routeToSettings
-            : routeToIntro,
+        path: routeToHome,
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            buildPageTransition(context, state, page: const HomePage()),
       ),
       GoRoute(
         path: routeToIntro,
-        builder: (BuildContext context, GoRouterState state) => const IntroPage(),
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            buildPageTransition(context, state, page: const IntroPage()),
       ),
       GoRoute(
         path: routeToSettings,
-        builder: (BuildContext context, GoRouterState state) => const SettingsPage(),
+        pageBuilder: (BuildContext context, GoRouterState state) =>
+            buildPageTransition(context, state, page: const SettingsPage()),
       ),
     ],
   );

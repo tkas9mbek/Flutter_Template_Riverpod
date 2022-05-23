@@ -11,14 +11,16 @@ class ProviderResponse<T> {
     this.message,
   });
 
-  factory ProviderResponse.fromResponse(ClientResponse response, {
+  factory ProviderResponse.fromResponse(
+    ClientResponse response, {
     T? data,
-  }) => ProviderResponse(
-    status: response.status,
-    data: data ?? (response.data as T),
-    errorCode: response.errorCode,
-    message: response.message,
-  );
+  }) =>
+      ProviderResponse(
+        status: response.status,
+        data: data ?? (response.data as T),
+        errorCode: response.errorCode,
+        message: response.message,
+      );
 
   final bool status;
   final T? data;
@@ -26,5 +28,6 @@ class ProviderResponse<T> {
   final String? message;
 
   @override
-  String toString() => 'ProviderResponse{ status: $status, data: $data, errorCode: $errorCode, message: $message,}';
+  String toString() =>
+      'ProviderResponse{ status: $status, data: $data, errorCode: $errorCode, message: $message,}';
 }

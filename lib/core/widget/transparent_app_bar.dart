@@ -3,8 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../theme/font.dart';
-import '../theme/style.dart';
-import 'icon_button_filled.dart';
+import 'filled_icon_button.dart';
 
 enum TransparentLeadingType {
   drawer,
@@ -13,7 +12,7 @@ enum TransparentLeadingType {
 
 class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
   const TransparentAppBar({
-    required this.title,
+    this.title = '',
     this.leadingType = TransparentLeadingType.back,
     this.actions = const [],
     Key? key,
@@ -25,48 +24,51 @@ class TransparentAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     Widget leading;
 
     switch (leadingType) {
       case TransparentLeadingType.drawer:
-        leading = IconButtonFilled(
+        leading = FilledIconButton(
           icon: FontAwesomeIcons.bars,
-          onTap: () => Scaffold.of(context).openDrawer(),
+          onClick: () => Scaffold.of(context).openDrawer(),
         );
         break;
       case TransparentLeadingType.back:
-        leading = IconButtonFilled(
+        leading = FilledIconButton(
           icon: FontAwesomeIcons.chevronLeft,
-          onTap: () => context.pop(),
+          onClick: () => context.pop(),
         );
         break;
     }
 
     return AppBar(
       elevation: 0,
-      leading: Center(child: leading),
+      leading: Padding(
+        padding: const EdgeInsets.only(
+          left: 13,
+        ),
+        child: Center(child: leading),
+      ),
       backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(
         title,
         style: MyFont.style(
-          color: colorScheme.onBackground,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
       ),
       actions: [
         Row(
           children: actions,
         ),
-        SizedBox(
-          width: MyStyle.generalBodyPadding.right,
+        const SizedBox(
+          width: 13,
         )
       ],
     );
   }
 
   @override
-  Size get preferredSize => AppBar().preferredSize;
+  Size get preferredSize => const Size.fromHeight(65);
 }

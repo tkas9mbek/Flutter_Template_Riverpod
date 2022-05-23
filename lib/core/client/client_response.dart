@@ -17,5 +17,6 @@ class ClientResponse {
   final Object? error;
 
   @override
-  String toString() => 'ClientResponse{status: $status, data: $data, errorCode: $errorCode, message: $message, error: $error}';
+  String toString() =>
+      'ClientResponse{status: $status, data: $data, errorCode: $errorCode, message: $message, error: $error}';
 }

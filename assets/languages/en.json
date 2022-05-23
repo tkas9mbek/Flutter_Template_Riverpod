@@ -6,5 +6,9 @@
   "skip": "Skip",
   "done": "Done",
   "change_lang": "Change Language",
-  "change_theme": "Change Theme"
+  "change_theme": "Change Theme",
+  "intro": "Introduction",
+  "settings": "Settings",
+  "language": "Language",
+  "select_lang": "Select language"
 }
