@@ -2,6 +2,10 @@
 
 A custom template for Flutter apps.
 
+## Getting Started
+
+The template contains the minimal implementation required to create a new project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants, localization and required dependencies to create a new project. This will help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
+
 ### Packages
 * **hooks_riverpod** (State Management)
 * **easy_localization** (Localization)
